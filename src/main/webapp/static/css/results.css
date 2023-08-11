@@ -1,0 +1,29 @@
+.numeric{
+    margin-bottom: 10px;
+}
+.headline{
+    font-weight: bold;
+    font-size: 1.7em;
+    background-image: linear-gradient(to right, #fff, #321443);
+    color: #28360b;
+    box-shadow: 0 0 9px;
+}
+.customBody{
+    background-image: url('/static/images/result-image.jpg');
+    background-size: cover;
+    font-size: 20px;
+}
+.resultList {
+    background-color: rgba(255, 229, 204, 0.7);
+    width: fit-content;
+    box-shadow: 0 0 9px;
+    padding: 8px;
+}
+form input[type="submit"] {
+    margin-top: 25px;
+    color: white;
+    background-color: #321443;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -1,0 +1,22 @@
+.goldBody {
+    background-image: url('/static/images/gold.jpg');
+    background-size: cover;
+    font-size: 17px;
+}
+.goldBackgroundColor {
+    width: fit-content;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 9px;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, #f3f3f3, #ffb178);
+}
+.goldScrollable-div {
+    width: auto;
+    max-height: 289px;
+    border: 1px solid #ccc;
+    overflow: auto;
+    margin-bottom: 10px;
+    background-color: rgba(218, 203, 189, 0.94);
+    padding: 5px;
+    box-shadow: 0 0 9px;
+}

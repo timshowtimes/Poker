@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New player</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/players.css}"/>
+</head>
+<body style="color: white; font-size: 20px;">
+    <p style="font-weight: bold; font-size: 1.7em" th:text="'Добавить нового игрока'"></p>
+    <form th:method="POST" th:action="@{/players/singlePlayerCreate}" th:object="${player}">
+        <div>
+            <label for="name"> Введите имя: </label>
+            <input type="text" th:field="*{name}" id="name"/>
+        </div>
+        <br/>
+        <input type="submit" value="Создать"/>
+    </form>
+</body>
+</html>

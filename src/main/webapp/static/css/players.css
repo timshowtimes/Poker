@@ -1,0 +1,32 @@
+.playerList {
+    width: auto;
+    max-height: 500px;
+    border: 1px solid #ccc;
+    overflow: auto;
+    margin-bottom: 10px;
+    box-shadow: 0 0 9px;
+    color: white;
+    font-size: 20px;
+}
+
+body {
+    background-image: url('/static/images/set-players.jpg');
+    background-size: 92%;
+}
+
+input[type="submit"][disabled] {
+    background-color: #80808000;
+    color: #98989882;
+    border-color: #363636;
+}
+
+form input[type="submit"] {
+    background-color: #0c1326;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: aliceblue;
+    border-color: #736873;
+    margin-right: 20px;
+}

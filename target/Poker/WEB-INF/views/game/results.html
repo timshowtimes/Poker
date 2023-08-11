@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/results.css}"/>
+</head>
+<body class="customBody">
+    <div class="headline"> Игра завершена! </div>
+    <br/>
+    <br/>
+    <div class="resultList">
+        <div class="numeric" th:each="player, i : ${game.getPlayerList()}">
+            <span th:if="${(i.index + 1) == 1}" th:text="'👑'"></span>
+            <span th:unless="${(i.index + 1) == 1}" th:text="${(i.index) + 1}"></span>
+            <span th:text="'.    ' + ${player.getName()}"></span>
+            <span style="font-weight: bold" th:text=" ' (счёт:  ' + ${player.getCurrentScore()} + ')'"></span>
+        </div>
+    </div>
+    <form th:method="GET" th:action="@{/game/menu}">
+        <input type="submit" value="В главное меню">
+    </form>
+</body>
+</html>

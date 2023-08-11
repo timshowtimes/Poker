@@ -1,0 +1,42 @@
+label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #949494;;
+    font-size: 20px
+}
+
+input {
+    padding: 5px;
+    width: 130px;
+}
+
+body {
+    background-image: url('/static/images/intro.jpg');
+    background-size: cover;
+}
+
+h1 {
+    color: #efede8;
+    text-shadow: -1px -1px #000, 0 1px 0 #000;
+    background-color: #1c2b1c82;
+}
+
+form input[type="submit"] {
+    background-color: #1a313f;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: larger;
+    font-weight: bold;
+    color: aliceblue;
+    border-color: #1a9800;
+}
+
+.errorMessage {
+    color: white;
+    font-size: 18px;
+    background-color: #930000;
+    font-weight: bold;
+    margin-top: 10px;
+}
+

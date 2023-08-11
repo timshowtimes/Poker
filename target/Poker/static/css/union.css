@@ -1,0 +1,43 @@
+.trump {
+    font-size: 40px;
+    margin-top: auto;
+    margin-left: 10px;
+}
+
+.playersZone {
+    display: flex;
+    width: 450px;
+    margin-top: 10px;
+    margin-left: 10px
+}
+
+.noneBetPlayerZone {
+    display: flex;
+    margin-top: 10px;
+    margin-left: 10px;
+    justify-content: space-between;
+    width: 380px
+}
+
+.textScore {
+    white-space: nowrap;
+    margin-right: 10px
+}
+
+.scoreValue {
+    font-weight: bold;
+    font-size: larger;
+    color: green;
+    margin-top: 16px;
+}
+
+.submitButton {
+    padding: 8px;
+    width: 10%;
+    background-color: #adf3b1;
+    color: #000;
+    font-size: medium;
+    border-color: #050500;
+    cursor: pointer;
+    border-radius: 7px;
+}

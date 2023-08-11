@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/menu.css}"/>
+</head>
+<html lang="en">
+<body>
+    <input type="hidden" id="listSize" th:value="${listSize}"/>
+    <h1> Расписной покер </h1>
+    <div class="buttonValue">
+        <form style="margin-right: 50px; margin-left: 10px" th:method="GET" th:action="@{/game/new-game}">
+            <input type="submit" value="Новая игра"/>
+        </form>
+        <form th:method="GET" th:action="@{/players}">
+            <input type="submit" value="Продолжить" id="submitButton" disabled/>
+        </form>
+    </div>
+    <div th:if="${emptyList}">
+        <h2>На данный момент нет ни одной законченной партии</h2>
+    </div>
+    <div th:unless="${emptyList}">
+        <h2 th:text="'Таблица лидеров последней игры за ' + ${date} + ':'"></h2>
+        <table>
+            <tr class="tr-th">
+                <th style="width: 25px"></th>
+                <th> Имя</th>
+                <th> Счёт</th>
+                <th> Инфо </th>
+            </tr>
+            <tr th:each="player, i : ${players}">
+                <td th:text="${(i.index) + 1} + '.'"></td>
+                <td th:text="${player.getName()}"></td>
+                <td th:text="${player.getCurrentScore()}"></td>
+                <td><a style="color: #b3bfff;" th:href="@{/players/{id}/info(id = ${player.getId()})}"
+                       th:text="'Подробнее'"></a></td>
+            </tr>
+        </table>
+    </div>
+    <script th:src="@{/js/disabledButton.js}"></script>
+</body>
+</html>

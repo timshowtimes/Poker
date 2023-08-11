@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/players.css}"/>
+</head>
+<body style=" color: white; font-size: 20px;">
+    <form th:method="PATCH" th:action="@{/players/{id}(id = ${updatePlayer.getId()})}" th:object="${updatePlayer}">
+        <p style="font-weight: bold; font-size: 1.7em" th:text="'Игрок: ' + ${updatePlayer.name}"></p>
+        <div>
+            <label for="name">Введите имя: </label>
+            <input type="text" th:field="*{name}" id="name"/>
+        </div>
+        <br/>
+        <input type="submit" value="Обновить"/>
+    </form>
+</body>
+</html>

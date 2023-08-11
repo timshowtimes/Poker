@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/index.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/union.css}">
+    <title>Poker-Trumpsless</title>
+</head>
+<body>
+<div class="backgroundColor">
+    <p th:text="'Режим: ' + ${game.getMode().getTitle()}"></p>
+    <p th:text="'Количество карт: ' + ${game.getCurrCardCount()} + '/' + ${game.getMaxCardCount()} +
+        ', экстра раунды → (' + ${game.getExtraRound()} + '/' + ${game.playerList.size()} + ')'"></p>
+    <p th:text="'Раздает: ' + ${game.getDealer().getName()}"></p>
+</div>
+<br/>
+<input type="hidden" id="cardCount" th:value="${game.getCurrCardCount()}"/>
+<form th:method="POST" th:action="@{/game/commitValues/trumpsless}" th:object="${game}">
+    <div class="scrollable-div">
+        <div th:each="player, objectStatus : ${game.getPlayerList()}">
+            <div class="playersZone">
+                <div>
+                    <label for="p" th:text="${player.getName()} + ' (ставка): '"></label>
+                    <input type="number" th:field="*{playerList[__${objectStatus.index}__].bet}" id="p"
+                            oninput="checkSum(); checkBet(this)"/>
+                </div>
+                <div>
+                    <label for="taken">Взятая ходка: </label>
+                    <input type="number"
+                           th:field="*{playerList[__${objectStatus.index}__].takenFactScore}" id="taken"
+                            oninput="checkBet(this)"/>
+                </div>
+                <div style="display: flex; width: 0">
+                    <p class="textScore" th:text="'Текущий счет: '"></p>
+                    <p class="scoreValue" th:text="${player.getCurrentScore()}"></p></div>
+            </div>
+        </div>
+    </div>
+    <div id="errorMessage" style="background: #c51244; color: #fff0f4; display: none">
+        Последняя ставка в сумме с другими не должна равняться количеству розданных карт
+    </div>
+    <div id="errorMessage2" style="background: #c51244; color: #fff0f4; display: none">
+        Ставка / Взятая ходка не может превышать количество розданных карт
+    </div>
+    <br/>
+    <hr/>
+    <input class="submitButton" type="submit" value="Подтвердить"/>
+</form>
+
+    <script th:src="@{/js/app.js}"></script>
+    <script th:src="@{/js/app2.js}"></script>
+
+</body>
+</html>

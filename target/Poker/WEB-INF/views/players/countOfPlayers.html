@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Count of players</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/intro.css}"/>
+</head>
+<body>
+    <form th:method="PATCH" th:action="@{/players/setPlayers}" th:object="${count}">
+        <h1> Первый этап. Определяем сколько человек будет играть. </h1>
+        <br/>
+        <div>
+            <label for="player"> Введите количество игроков: </label>
+            <input type="number" th:field="*{value}" id="player"/>
+            <div class="errorMessage" th:if="${#fields.hasErrors('value')}" th:errors="*{value}">count err</div>
+        </div>
+        <br/>
+        <input type="submit" value="Принять"/>
+    </form>
+</body>
+</html>

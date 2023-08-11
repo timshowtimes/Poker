@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Info</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/information.css}"/>
+</head>
+<body>
+    <h1 th:text="'Набранные очки игрока ' + ${playerName} + ' за каждую завершенную игру'"></h1>
+    <div>
+        <table>
+            <tr class="tr-th">
+                <th> Счёт </th>
+                <th> Дата </th>
+            </tr>
+            <tr th:each="score : ${scoreList}">
+                <td th:text="${score.getValue()}"></td>
+                <td th:text="${score.getDate()}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

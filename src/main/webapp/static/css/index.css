@@ -1,0 +1,30 @@
+.scrollable-div {
+    width: auto;
+    max-height: 289px;
+    border: 1px solid #ccc;
+    overflow: auto;
+    margin-bottom: 10px;
+    background: #f5f5dc;
+    box-shadow: 0 0 9px;
+}
+.backgroundColor {
+    background-color: #fff0f4;
+    width: fit-content;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 9px;
+    border-radius: 10px;
+    padding: 5px;
+
+}
+
+body {
+    background-image: url('/static/images/base-and-trumpsless.jpg');
+    font-size: 17px;
+}
+
+.countOfCardAndExtraRounds {
+    display: flex;
+    margin-top: -15px;
+    margin-bottom: -15px
+}
+

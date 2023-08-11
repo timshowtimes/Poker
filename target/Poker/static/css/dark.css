@@ -1,0 +1,26 @@
+.darkBackgroundColor {
+    background-image: linear-gradient(to right, black, #6a0606);
+    color: #fff0f4;
+    width: fit-content;
+    border: 1px solid #0f0f0f;
+    box-shadow: 0 0 9px;
+    border-radius: 10px;
+}
+
+.darkScrollable-div {
+    width: auto;
+    max-height: 289px;
+    border: 1px solid #0f0f0f;
+    overflow: auto;
+    margin-bottom: 10px;
+    background-color: rgba(0, 0, 0, 0);
+    color: #fff0f4;
+    padding: 5px;
+    box-shadow: 0 0 9px;
+}
+
+body {
+    background-image: url('/static/images/dark.jpg');
+    font-size: 17px;
+}
+

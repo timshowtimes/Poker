@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lobby</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/players.css}"/>
+</head>
+<body>
+    <input type="hidden" id="playersCount" th:value="${players.size()}"/>
+    <div class="playerList" >
+        <div th:each="player : ${players}">
+            <p style="margin-bottom: 10px" th:text="${player.getName()}">player name</p>
+            <div style="display: flex; justify-content: space-between; width: 143px">
+                <form th:method="GET" th:action="@{/players/{id}/edit(id = ${player.getId()})}">
+                    <input type="submit" value="Обновить" id="update"/>
+                </form>
+                <form th:method="DELETE" th:action="@{/players/{id}(id = ${player.getId()})}">
+                    <input id="deleteButton" type="submit" value="Удалить" disabled/>
+                </form>
+            </div>
+            <br/>
+        </div>
+    </div>
+    <div style="display: flex; justify-content: space-between; width: 250px" >
+        <div th:if="${players.size() < 10}">
+            <form th:method="GET" th:action="@{/players/add}">
+                <input style="border-color: red" type="submit" value="Добавить игрока"/>
+            </form>
+        </div>
+        <div th:if="${players.size() == 10}">
+            <p style="color: red; font-weight: bold; font-size: larger"
+               th:text="'Все, полна телега: 10 игроков.'"></p>
+        </div>
+        <form method="GET" th:action="@{/game/start}">
+            <input style="border-color: green" type="submit" value="Начать игру">
+        </form>
+    </div>
+
+    <script th:src="@{/js/deleteButtonAbility.js}"></script>
+</body>
+</html>

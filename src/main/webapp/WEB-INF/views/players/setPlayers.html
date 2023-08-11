@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/setPlayers.css}"/>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/players}" th:object="${count}">
+    <div style="margin-bottom: 10px" th:each="player, objectStatus : ${count.getPlayerList()}">
+        <label for="name"> Введите имя игрока: </label>
+        <input type="text" th:field="*{playerList[__${objectStatus.index}__].name}" id="name"/>
+    </div>
+    <input type="submit" value="Подтвердить"/>
+</form>
+
+</body>
+</html>

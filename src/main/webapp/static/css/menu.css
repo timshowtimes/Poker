@@ -1,0 +1,77 @@
+th, td {
+    border: 1px solid #494949;
+    padding: 8px;
+    text-align: left;
+}
+
+.tr-th {
+    color: white;
+    background-image: linear-gradient(to right, #002d00, #000024);
+}
+
+tr:nth-child(odd) td {
+    background-color: #1F1F1F;
+    color: white
+}
+
+tr:nth-child(even) td {
+    background-color: #393939;
+    color: whitesmoke;
+}
+body {
+    background-image: url('/static/images/menu.jpg');
+    background-size: cover;
+    background-position-y: -250px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 70%;
+    font-size: 17px;
+    font-family: monospace;
+    margin: 8px auto auto;
+}
+
+h1 {
+    font-size: 60px;
+    text-shadow: -1px -1px #000, 0 1px 0 #ff5b5b;
+    color: #672323;
+    font-family: Sans-serif, serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    margin: 35px 0 0;
+    display: flex;
+    justify-content: center;
+    color: #ededed;
+    background-color: #3a4a42;
+    font-family: monospace;
+}
+
+form input[type="submit"] {
+    background-color: #152600;;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: larger;
+    font-weight: bold;
+    color: aliceblue;
+    border-color: #23af7b;
+    margin-top: 130px;
+    margin-left: 20px;
+}
+
+input[type="submit"][disabled] {
+    background-color: #80808000;
+    color: #98989882;
+    border-color: #363636;
+}
+
+.buttonValue {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
