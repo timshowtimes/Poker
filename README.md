@@ -14,7 +14,7 @@ The new game removes the entire list of players from the base, if they were ther
 The game has 5 game modes:
 - Default
 - No trumps
-- Meager
+- Misere
 - Dark
 - Gold
 
