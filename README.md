@@ -1,5 +1,5 @@
 # Odessa Poker (Расписной покер)
-#### Developed by Timur Sultanov
+#### _Developed by Timur Sultanov_
 ![I](https://images.midilibre.fr/api/v1/images/view/63612b611917b6293f057c1c/large/image.jpg?v=1)
 The project was created for personal use with family and friends and is presented as a result of my current skills.
 
