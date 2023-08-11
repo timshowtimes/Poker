@@ -18,11 +18,35 @@ The game has 5 game modes:
 - Dark
 - Gold
 
-Each mode describes its unique features. More information about them and about the rules of the game can be found here *[rules of the game](https://ru.wikipedia.org/wiki/%D0%9E%D0%B4%D0%B5%D1%81%D1%81%D0%BA%D0%B8%D0%B9_%D0%BF%D0%BE%D0%BA%D0%B5%D1%80#%D0%A1%D0%BF%D0%B5%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5_%D0%B8%D0%B3%D1%80%D1%8B)*. 
+Each mode describes its unique features. More information about them and about the rules of the game can be found here: *[rules of the game](https://ru.wikipedia.org/wiki/%D0%9E%D0%B4%D0%B5%D1%81%D1%81%D0%BA%D0%B8%D0%B9_%D0%BF%D0%BE%D0%BA%D0%B5%D1%80#%D0%A1%D0%BF%D0%B5%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5_%D0%B8%D0%B3%D1%80%D1%8B)*. 
 
 At the end of the whole game, the winner is displayed, 2nd place, 3rd ... and so on, with the option to go back to the main menu.
 
 In the leaderboard there is an "Info" column where you can see the results of all the past games of each player with a date.
+
+### (RU)
+Проект был создан в целях личного пользования в кругу семьи и друзей и выставлен как результат моих текущих навыков.
+
+Игра проходит вживую, эта программа лишь упрощает систему подсчета очков и других игровых нюансов в процессе игры.
+
+## Функционал:
+
+Главное меню с 2 кнопками: новая игра и продолжить. Кликабельность второй зависит от наличия созданных игроков в базе данных. Также в меню отображается таблица лидеров за предыдущую партию.
+
+Новая игра удаляет весь список игроков с базы, если они там были. Далее установливается количество игроков (2<количество<11), и никнеймы каждому из них. Каждую сущность "игрок" можно редактировать/удалить, то есть вшит весь функционал CRUD. 
+
+В игре есть 5 игровых режима:
+- Дефолтный
+- Без козырей
+- Мизер
+- Темная
+- Золотая
+
+Каждый режим описывает свои уникальные возможности. Подробнее о них и о самих правилах игры можно узнать здесь: *[правила расписного покера](https://ru.wikipedia.org/wiki/%D0%9E%D0%B4%D0%B5%D1%81%D1%81%D0%BA%D0%B8%D0%B9_%D0%BF%D0%BE%D0%BA%D0%B5%D1%80#%D0%A1%D0%BF%D0%B5%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5_%D0%B8%D0%B3%D1%80%D1%8B)*. 
+
+По окончанию всей игры выводится победитель, 2 место, 3... и так далее, с возможностью перейти обратно в главное меню.
+
+В таблице лидеров есть колонка "Инфо" где можно увидеть результаты всех прошедших игр каждого игрока с его датой.
 
 ## Skills:
 
