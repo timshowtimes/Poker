@@ -3,10 +3,70 @@ package kz.timshowtime.services;
 import kz.timshowtime.enums.Mode;
 import kz.timshowtime.models.Game;
 import kz.timshowtime.models.Player;
+import kz.timshowtime.repositories.GameRepo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 public class GameService {
+
+    private final GameRepo gameRepo;
+
+    public GameService(GameRepo gameRepo) {
+        this.gameRepo = gameRepo;
+    }
+
+    public List<Game> findAll() {
+        return gameRepo.findAll();
+    }
+
+    public Game findOne(int id) {
+        return gameRepo.findById(id).orElse(null);
+    }
+
+    public List<Game> initPlayerList() {
+        List<Game> gameList = findAll();
+        gameList.forEach(g -> g.getPlayerList().size());
+        return gameList;
+    }
+
+    public Game initSaveScore(int id) {
+        Game game = findOne(id);
+        game.getSavedScoreList().size();
+        return game;
+    }
+
+    @Transactional
+    public void save(Game game) {
+        gameRepo.save(game);
+    }
+
+    @Transactional
+    public void update(int id, Game updateGame) {
+        updateGame.setId(id);
+        gameRepo.save(updateGame);
+    }
+
+    @Transactional
+    public void removePlayersGames(int id) {
+        Game bdGame = findOne(id);
+        for (Player player : bdGame.getPlayerList()) {
+            List<Game> playerGames = player.getGames();
+            Game gameForRemove = playerGames.stream()
+                    .filter(g -> g.getId() == id).findAny().orElse(null);
+            playerGames.remove(gameForRemove);
+        }
+    }
+
+    @Transactional
+    public void delete(int id) {
+        gameRepo.deleteById(id);
+    }
+
+
     public void calculateValues(Game singletonGame, Game formGame) {
         int i = 0;
         for (Player player : singletonGame.getPlayerList()) {
@@ -48,16 +108,10 @@ public class GameService {
 
     }
 
-    public void setDefault(Game game, PlayerService playerService) {
-        game.setMaxCardCount(36 / playerService.findAll().size());
-        game.setPlayerList(playerService.findAll());
+    public void setDefault(Game game, List<Player> playerList) {
+        game.setMaxCardCount(36 / playerList.size());
+        game.setPlayerList(playerList);
         game.getPlayerList().forEach(Player::refreshScore);
-        game.setCurrCardCount(1);
-        game.setModePos(0);
-        game.setDealerPos(0);
-        game.setDecrease(false);
-        game.setExtraRound(0);
-        game.setMode(Mode.DEFAULT);
     }
 
     public void misereCalculate(Game singletonGame, Game formGame) {

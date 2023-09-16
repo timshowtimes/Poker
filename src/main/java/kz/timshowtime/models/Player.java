@@ -1,13 +1,12 @@
 package kz.timshowtime.models;
 
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "player")
-public class Player implements Comparable<Player>{
+public class Player implements Comparable<Player> {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +24,34 @@ public class Player implements Comparable<Player>{
     @Column(name = "takenFactScore")
     private int takenFactScore;
 
-    @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "player", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Score> scoreList;
+
+    @OneToMany(mappedBy = "savedPlayer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SavedScore> savedScoreList;
+
+    @ManyToMany
+    @JoinTable(
+            name = "Players_Game",
+            joinColumns = @JoinColumn(name = "player_id"),
+            inverseJoinColumns = @JoinColumn(name = "game_id"))
+    private List<Game> games;
+
+    public List<SavedScore> getSavedScoreList() {
+        return savedScoreList;
+    }
+
+    public void setSavedScoreList(List<SavedScore> savedScoreList) {
+        this.savedScoreList = savedScoreList;
+    }
+
+    public void addSavedScore(SavedScore savedScore) {
+        savedScoreList.add(savedScore);
+    }
+
+    public void addGame(Game game) {
+        games.add(game);
+    }
 
     public void addScore(Score score) {
         scoreList.add(score);
@@ -89,10 +114,8 @@ public class Player implements Comparable<Player>{
     }
 
     @Override
-    public String toString() {
-        return "Player{" +
-                "score='" + currentScore + '\'' +
-                '}';
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
@@ -100,4 +123,11 @@ public class Player implements Comparable<Player>{
         return o.currentScore - this.currentScore;
     }
 
+    public List<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(List<Game> games) {
+        this.games = games;
+    }
 }

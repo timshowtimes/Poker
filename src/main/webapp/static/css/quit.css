@@ -1,0 +1,40 @@
+.quit {
+    height: 50px;
+    width: 50px;
+    margin-left: 10px;
+    background-image: url('/static/images/door-open.png');
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.quit:hover {
+    border: 2px solid #07be93;
+    box-shadow: 0 0 9px;
+}
+
+.tooltip {
+    display: inline-block;
+    height: 50px;
+}
+
+.tooltip .tooltiptext {
+    margin-left:9px;
+    visibility: hidden;
+    border-radius:4px;
+    position: absolute;
+    z-index: 1;
+    padding: 8px;
+    opacity: 0;
+    transition: opacity 0.5s;
+    background-color: #6f7275;
+    color: white;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}

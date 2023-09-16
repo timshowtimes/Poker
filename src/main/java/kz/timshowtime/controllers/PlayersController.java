@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/players")
@@ -73,7 +74,7 @@ public class PlayersController {
     public String createOnePlayer(@ModelAttribute("player") Player player) {
         if (player.getName().equals("")) player.setName("Дурак_Который_Забыл_Ввести_Имя");
         playerService.save(player);
-        return "redirect:/players";
+        return "redirect:/game/selection";
     }
 
     @DeleteMapping("/{id}")

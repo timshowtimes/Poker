@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Selection</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/players.css}"/>
+</head>
+<body>
+<h1> Доступные игроки на выбор: </h1>
+    <form th:method="GET" th:action="@{/players/add}">
+        <input style="border-color: #ff7300; margin-bottom: 10px; margin-top: -8px" type="submit" value="Добавить игрока"/>
+    </form>
+    <form th:method="PATCH" th:action="@{/game/checkedPlayers}">
+        <div class="playerList">
+            <div style="margin-bottom: 10px" th:each="player : ${playersForSelect}">
+                <input class="custom-checkbox" type="checkbox"
+                       th:name="'selectedIds'" th:value="${player.getId()}" id="playerName"/>
+                <label for="playerName" th:text="${player.getName()}"></label>
+            </div>
+        </div>
+        <input type="submit" value="Начать игру" id="checkBoxSubmitButton"/>
+    </form>
+    <script th:src="@{/js/checkBoxAbility.js}"></script>
+</body>
+</html>

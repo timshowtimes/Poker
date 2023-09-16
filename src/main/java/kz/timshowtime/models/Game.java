@@ -1,21 +1,54 @@
 package kz.timshowtime.models;
 
 import kz.timshowtime.enums.Mode;
-import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
-@Component
+@Entity
+@Table(name = "game")
 public class Game {
-    private List<Player> playerList;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(name = "maxCardCount")
     private int maxCardCount;
+    @Column(name = "extraRound")
     private int extraRound;
-    private int currCardCount = 1; // need to refresh
-    private int modePos; // need to refresh
+    @Column(name = "currCardCount")
+    private int currCardCount = 1;
+    @Column(name = "modePos")
+    private int modePos;
+    @Column(name = "decrease")
     private boolean decrease = false;
-    private int dealerPos; // need to refresh
-    private final String[] trumps = {"♥", "♦", "♠", "♣"};
-    private Mode mode = Mode.DEFAULT; // need to refresh to Mode.DEFAULT
+    @Column(name = "dealerPos")
+    private int dealerPos;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "mode")
+    private Mode mode = Mode.DEFAULT;
+    @ManyToMany(mappedBy = "games")
+    private List<Player> playerList;
+
+    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SavedScore> savedScoreList;
+
+    public void addSavedScore(SavedScore savedScore) {
+        savedScoreList.add(savedScore);
+    }
+
+    public List<SavedScore> getSavedScoreList() {
+        return savedScoreList;
+    }
+
+    public void setSavedScoreList(List<SavedScore> savedScoreList) {
+        this.savedScoreList = savedScoreList;
+    }
+
+    public void addPlayer(Player player) {
+        playerList.add(player);
+    }
 
     public void setDealerPos(int dealerPos) {
         this.dealerPos = dealerPos;
@@ -47,6 +80,14 @@ public class Game {
 
     public Player getDealer() {
         return playerList.get((dealerPos++) % playerList.size());
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public boolean isDecrease() {
@@ -85,7 +126,7 @@ public class Game {
     public String getRandTrump() {
         if ((int) (Math.random() * 37) == 7)
             return "JOKER";
-        return trumps[(int) (Math.random() * 4)];
+        return new String[]{"♥", "♦", "♠", "♣"}[(int) (Math.random() * 4)];
     }
 
     public int getMaxCardCount() {
@@ -110,5 +151,39 @@ public class Game {
 
     public void switchMode() {
         mode = Mode.values()[++modePos % 5];
+    }
+
+    public int getModePos() {
+        return modePos;
+    }
+
+    public int getDealerPos() {
+        return dealerPos;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Game game)) return false;
+        return id == game.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder players = new StringBuilder();
+        int i = 0;
+        for (Player player : playerList) {
+            if (i++ == 3)
+                players.append("\n");
+            players.append(player.getName()).append(", ");
+        }
+        int length = players.length();
+
+        return players.delete(length-2, length).toString();
     }
 }

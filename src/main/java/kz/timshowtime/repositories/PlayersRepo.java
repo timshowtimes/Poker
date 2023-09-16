@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface PlayersRepo extends JpaRepository<Player, Integer> {
     @Modifying
     @Query("UPDATE Player p SET p.currentScore = :currentScore WHERE p.id = :playerId")
-    void updatePlayerCurrentScoreById(int playerId, Integer currentScore);
+    void updatePlayerCurrentScoreById(int playerId, int currentScore);
 }

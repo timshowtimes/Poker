@@ -1,23 +1,27 @@
 package kz.timshowtime.services;
 
+import kz.timshowtime.models.Game;
 import kz.timshowtime.models.Player;
+import kz.timshowtime.models.SavedScore;
 import kz.timshowtime.models.Score;
 import kz.timshowtime.repositories.PlayersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 @Transactional(readOnly = true)
 public class PlayerService {
     private final PlayersRepo playersRepo;
+    private final GameService gameService;
 
     @Autowired
-    public PlayerService(PlayersRepo playersRepo) {
+    public PlayerService(PlayersRepo playersRepo, GameService gameService) {
         this.playersRepo = playersRepo;
+        this.gameService = gameService;
     }
 
     public List<Player> findAll() {
@@ -29,16 +33,34 @@ public class PlayerService {
     }
 
     public Player initializeScoreList(Player player) {
-        Player findPlayer = findAll().stream()
-                .filter(p -> p.getId() == player.getId())
-                .findFirst().get();
+        Player findPlayer = findOne(player.getId());
         findPlayer.getScoreList().size();
         return findPlayer;
     }
 
     @Transactional
-    public void updateCurrentScore(int id, Integer currentScore) {
+    public void updateCurrentScore(int id, int currentScore) {
         playersRepo.updatePlayerCurrentScoreById(id, currentScore);
+    }
+
+
+    @Transactional // операции многий ко многим: игроку +1 игра, игре +каждый игрок
+    public void setGames(List<Player> playerList, Game game) {
+        Game bdGame = gameService.findOne(game.getId());
+        for (Player player : playerList) {
+            Player bdPlayer = findOne(player.getId());
+            bdPlayer.addGame(bdGame);
+            bdGame.addPlayer(bdPlayer);
+        }
+    }
+
+    @Transactional // каждому игроку добавляем новый savedScore и то же самое к текущей игре
+    public void commitScoreAndQuit(Player player, int savedScore, Game game) {
+        Game bdGame = gameService.findOne(game.getId());
+        Player bdPlayer = findOne(player.getId());
+        SavedScore osc = new SavedScore(bdPlayer, bdGame, savedScore);
+        bdPlayer.addSavedScore(osc);
+        bdGame.addSavedScore(osc);
     }
 
     @Transactional
@@ -58,9 +80,24 @@ public class PlayerService {
     }
 
     @Transactional
-    public void setResults() {
-        findAll().forEach(p -> p.addScore(new Score(p, p.getCurrentScore())));
+    public void setResults(List<Player> playerList) {
+        for (Player player : playerList)
+            findOne(player.getId()).addScore(new Score(player, player.getCurrentScore()));
+        playerList = playerList.stream().map(p -> initializeScoreList(findOne(p.getId()))).toList();
+        setMaxScorePlayer(playerList);
     }
+
+    @Transactional
+    public void setMaxScorePlayer(List<Player> playerList) {
+        try {
+            for (Player player : playerList) {
+                updateCurrentScore(player.getId(), Collections.max(player.getScoreList(),
+                        Comparator.comparingInt(Score::getValue)).getValue());
+            }
+        // если это новые игроки с пустым списком очков -> игнор, максимальное значение == текущему набранному
+        } catch (NoSuchElementException ignored) {}
+    }
+
 
     public void noNamePlayers(List<Player> playerList) {
         AtomicInteger count = new AtomicInteger(0);
