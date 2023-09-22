@@ -1,10 +1,16 @@
 # Odessa Poker (Расписной покер)
 #### _Developed by Timur Sultanov_
+
+
 UPD:  
-      - добавлена возможность сохранять игру, и продолжить ее с тем игровым состоянием котрое было при сохранении.
-      - при новой игре не удаляются существующие игроки, а появляется удобный селектор где можно выделить желающих игроков, либо добавить новых.
-      - доп. фронтенд часть для создания удобного и красивого инетрфейса.
+- added the ability to save the game and continue it with the game state that was when saving.
+- when starting a new game, existing players are not deleted, but a convenient selector appears where you can select players for the game or add new ones.
+- additional front-end part to create a convenient and beautiful interface.
+
+
 ![I](https://images.midilibre.fr/api/v1/images/view/63612b611917b6293f057c1c/large/image.jpg?v=1)
+
+
 The project was created for personal use with family and friends and is presented as a result of my current skills.
 
 The game takes place in real life, this program only simplifies the scoring system and other game nuances during the game.
@@ -29,6 +35,13 @@ At the end of the whole game, the winner is displayed, 2nd place, 3rd ... and so
 In the leaderboard there is an "Info" column where you can see the results of all the past games of each player with a date.
 
 ### (RU)
+
+UPD:
+
+- добавлена возможность сохранить игру и продолжить ее с тем состоянием игры, которое было при сохранении.
+- при запуске новой игры существующие игроки не удаляются, а появляется удобный селектор, где можно выбрать нужных игроков или добавить новых.
+- дополнительная фронтенд часть для создания удобного и красивого интерфейса.
+
 Проект был создан в целях личного пользования в кругу семьи и друзей и выставлен как результат моих текущих навыков.
 
 Игра проходит вживую, эта программа лишь упрощает систему подсчета очков и других игровых нюансов в процессе игры.
