@@ -1,5 +1,9 @@
 # Odessa Poker (Расписной покер)
 #### _Developed by Timur Sultanov_
+UPD:  
+      - добавлена возможность сохранять игру, и продолжить ее с тем игровым состоянием котрое было при сохранении.
+      - при новой игре не удаляются существующие игроки, а появляется удобный селектор где можно выделить желающих игроков, либо добавить новых.
+      - доп. фронтенд часть для создания удобного и красивого инетрфейса.
 ![I](https://images.midilibre.fr/api/v1/images/view/63612b611917b6293f057c1c/large/image.jpg?v=1)
 The project was created for personal use with family and friends and is presented as a result of my current skills.
 
